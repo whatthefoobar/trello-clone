@@ -24,6 +24,10 @@ const TodoCard = ({
   draggableProps,
   dragHandleProps,
 }: Props) => {
+  const handleDeleteTodo = () => {
+    console.log("delete todo");
+  };
+
   return (
     <div
       className="bg-white rounded-md space-y-2 drop-shadow-md"
@@ -33,7 +37,10 @@ const TodoCard = ({
     >
       <div className="flex justify-between items-center p-5">
         <p className="font-normal">{todo.title}</p>
-        <button className="text-red-500 hover:text-red-600">
+        <button
+          className="text-red-500 hover:text-red-600"
+          onClick={handleDeleteTodo}
+        >
           <XCircleIcon className="ml-5 h-8 w-8"></XCircleIcon>
         </button>
       </div>

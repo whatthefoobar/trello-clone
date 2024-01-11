@@ -7,6 +7,8 @@ interface IBoardState {
   getBoard: () => void;
   setBoardState: (board: IBoard) => void;
   updateTodoInDb: (todo: ITodo, columnId: TypedColumn) => void;
+  searchString: string;
+  setSearchString: (searchString: string) => void;
 }
 
 export const useBoardStore = create<IBoardState>((set) => ({
@@ -30,4 +32,6 @@ export const useBoardStore = create<IBoardState>((set) => ({
       }
     );
   },
+  searchString: "",
+  setSearchString: (searchString) => set({ searchString }),
 }));

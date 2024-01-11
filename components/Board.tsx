@@ -19,18 +19,18 @@ const Board = () => {
   useEffect(() => {
     getBoard();
   }, [getBoard]);
-  console.log("board", board);
+  // console.log("board", board);
 
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
-    console.log("destination", destination);
+    // console.log("destination", destination);
     console.log("source", source);
-    console.log("type", type);
+    // console.log("type", type);
 
     // check if user dragged card outside board
     if (!destination) return;
-    console.log("board", board);
-    console.log("entries", board.columns.entries());
+    // console.log("board", board);
+    // console.log("entries", board.columns.entries());
 
     // handle column drag
     if (type === "column") {
@@ -69,8 +69,13 @@ const Board = () => {
     if (!startCol || !finishCol) return;
 
     if (source.index === destination.index && startCol === finishCol) return;
+    //the new todos from where a todo was moved
     const newTodos = startCol.todos;
+    console.log("new todos", newTodos);
+
+    // destructuring so we only get the value of the removed item not ["value"]
     const [todoMoved] = newTodos.splice(source.index, 1);
+    console.log("todoMoved", todoMoved);
 
     if (startCol.id === finishCol.id) {
       // same column task drag
@@ -79,6 +84,7 @@ const Board = () => {
         id: startCol.id,
         todos: newTodos,
       };
+      //create a new copy
       const newColumns = new Map(board.columns);
       newColumns.set(startCol.id, newCol);
 
