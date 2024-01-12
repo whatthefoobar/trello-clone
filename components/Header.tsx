@@ -1,10 +1,11 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import SugestionBox from "./SugestionBox";
 import { useBoardStore } from "@/store/BoardStore";
+import fetchSuggestion from "@/lib/fetchSuggestion";
 
 const Header = () => {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
@@ -12,6 +13,26 @@ const Header = () => {
     state.searchString,
     state.setSearchString,
   ]);
+
+  const [loading, setLoading] = useState(false);
+  const [suggestion, setSuggestion] = useState("");
+
+  useEffect(() => {
+    //.size cuz its a Map
+    if (board.columns.size === 0) {
+      return;
+    }
+
+    setLoading(true);
+
+    const fetchSuggestionFunc = async () => {
+      const suggestion = await fetchSuggestion(board);
+      setSuggestion(suggestion);
+      setLoading(false);
+    };
+
+    fetchSuggestionFunc();
+  }, [board]);
 
   return (
     <header>
@@ -63,7 +84,7 @@ const Header = () => {
         </div>
       </div>
       {/* Sugestion Box */}
-      <SugestionBox />
+      <SugestionBox suggestion={suggestion} loading={loading} />
     </header>
   );
 };
