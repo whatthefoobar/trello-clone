@@ -20,3 +20,11 @@ interface IImage {
   bucketId: string;
   fileId: string;
 }
+
+interface ITaskType {
+  id: TypedColumn;
+  name: string;
+  description: string;
+  color: string;
+  ringColor: string;
+}

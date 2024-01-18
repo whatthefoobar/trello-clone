@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Modal from "@/components/Modal";
 
 export const metadata: Metadata = {
   title: "Trello 2.0 clone",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className="bg-[#F5F6F8]">{children}</body>
+      <body className="bg-[#F5F6F8]">
+        {children}
+        <Modal />
+      </body>
     </html>
   );
 };
