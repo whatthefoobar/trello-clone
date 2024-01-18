@@ -4,6 +4,7 @@ const uploadImage = async (file: File | null | undefined) => {
   if (!file) return;
 
   const fileUploaded = await storage.createFile(
+    // from appwrite storage
     process.env.NEXT_PUBLIC_BUCKET_ID!,
     ID.unique(),
     file

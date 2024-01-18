@@ -58,8 +58,8 @@ const TodoCard = ({
         </button>
       </div>
 
-      {/* add image here*/}
-      {/* {imageUrl && (
+      {/* add image */}
+      {imageUrl && (
         <div className="relative h-full w-full rounded-b-md">
           <Image
             src={imageUrl}
@@ -69,7 +69,7 @@ const TodoCard = ({
             className="w-full object-contain rounded-b-md"
           ></Image>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
